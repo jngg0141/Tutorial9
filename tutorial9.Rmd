@@ -4,3 +4,21 @@ author: "jimmy"
 date: "2023-05-04"
 output: html_document
 ---
+```{r}
+library(readr)
+library(tidyverse)
+```
+
+```{r}
+crime <- read.csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
+```
+
+```{r}
+crime %>% group_by(Offence.Subdivision) %>% 
+  filter(Year >= 2010) %>% 
+  filter(Offence.Division == "A Crimes against the person") %>% 
+  arrange(Year) %>% 
+  ggplot() +
+  geom_point(aes(y = Rate.per.100.000.population, x = Year))
+```
+
