@@ -4,3 +4,46 @@ author: "jimmy"
 date: "2023-05-04"
 output: html_document
 ---
+
+# Load libraries
+
+```{r}
+
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+```
+
+
+# Load dataset
+
+```{r}
+
+# Read the dataset
+crime_data <- read.csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
+
+```
+
+```{r}
+
+head(crime_data)
+
+```
+
+
+# Plotting a graph
+
+```{r}
+# Filter the data to only include C Drug Offences
+drug_offences <- crime_data %>% filter(Offence.Division == "C Drug offences")
+
+# Create the line graph
+ggplot(drug_offences, aes(x = Year, y = Rate.per.100.000.population)) +
+  geom_col(position = "dodge") +
+  ggtitle("Rate of recorded incidents for C Drug Offences") +
+  xlab("Year") +
+  ylab("Rate per 100,000 population")
+
+```
+
