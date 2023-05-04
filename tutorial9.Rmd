@@ -4,3 +4,36 @@ author: "jimmy"
 date: "2023-05-04"
 output: html_document
 ---
+
+```{r}
+library(readr)
+library(tidyverse)
+```
+
+
+
+```{r}
+criminal_data_raw <- read_csv("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv")
+```
+
+```{r}
+criminal_data <- criminal_data_raw %>%
+  filter( Year >= 2010) %>%
+  rename( "offense_division" =  "Offence Division")
+```
+
+```{r}
+criminal_data_drug <- criminal_data %>%
+  filter( offense_division == "C Drug offences") %>%
+  arrange(Year)
+```
+
+```{r}
+ggplot(criminal_data_drug, 
+aes(x = "Rate per 100,000 population", y = Year) ) + 
+geom_point()
+```
+
+
+
+
