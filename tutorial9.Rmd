@@ -1,6 +1,24 @@
 ---
 title: "tutorial9"
-author: "jimmy"
+author: "Madhab"
 date: "2023-05-04"
 output: html_document
 ---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(kableExtra)
+library(here)
+```
+
+```{r}
+crime <- read_csv(here::here("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019.csv"))
+```
+```{r}
+crime %>% ggplot(aes(x = `Offence Division`)) + geom_bar()+
+  labs(x= "Offence Division", y= "Frequency") + 
+  ggtitle("Distribution of Offence Division")
+```
+
